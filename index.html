@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>STUDIO NOON · 정오 — 서울 성수 프로필·인물 사진</title>
+<meta name="description" content="자연광으로 담는 프로필·인물·가족·바디 프로필. 서울 성수 사진 스튜디오 STUDIO NOON 정오." />
+<meta name="theme-color" content="#F5F4F2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --paper:#F5F4F2; --soft:#FAFAF9; --ink:#141414; --grey:#8C8C8A; --line:#E2E1DD;
+  --maxw:1280px;
+  --grotesk:"Space Grotesk",sans-serif;
+  --sans:"Pretendard","Pretendard Variable",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.gk{font-family:var(--grotesk)}
+
+/* ---------- 고정 상단바 ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;mix-blend-mode:difference;color:#fff}
+.topbar__logo{font-family:var(--grotesk);font-weight:700;font-size:1.15rem;letter-spacing:.16em}
+.topbar__menu{font-family:var(--grotesk);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;gap:9px}
+.topbar__menu .bars{display:inline-flex;flex-direction:column;gap:4px}
+.topbar__menu .bars i{width:22px;height:1.5px;background:#fff;display:block}
+
+/* ---------- 풀스크린 오버레이 내비 ---------- */
+.navoverlay{position:fixed;inset:0;z-index:70;background:var(--ink);color:var(--paper);
+  display:flex;flex-direction:column;justify-content:center;padding:0 8vw;
+  transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.navoverlay.open{transform:none}
+.navoverlay__close{position:absolute;top:22px;right:40px;background:none;border:none;color:var(--paper);
+  font-family:var(--grotesk);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.navoverlay ol{list-style:none;counter-reset:n}
+.navoverlay ol a{font-family:var(--grotesk);font-weight:500;font-size:clamp(2rem,6vw,4.2rem);
+  display:inline-flex;align-items:baseline;gap:18px;padding:10px 0;opacity:.6;transition:opacity .25s}
+.navoverlay ol a:hover{opacity:1}
+.navoverlay ol a::before{counter-increment:n;content:"0" counter(n);font-size:.9rem;color:var(--grey);font-family:var(--grotesk)}
+.navoverlay__foot{position:absolute;bottom:34px;left:8vw;right:8vw;display:flex;justify-content:space-between;
+  color:var(--grey);font-size:.8rem;letter-spacing:.04em}
+
+/* ---------- 버튼 ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;font-family:var(--grotesk);
+  font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.22s;
+  border:1px solid var(--ink);background:none;color:var(--ink)}
+.btn--solid{background:var(--ink);color:var(--paper)}
+.btn--solid:hover{background:#000}
+.btn--ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* ---------- 공통 섹션 ---------- */
+.section{max-width:var(--maxw);margin:0 auto;padding:120px 40px}
+.eyebrow{font-family:var(--grotesk);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--grey);margin-bottom:22px}
+.h2{font-family:var(--grotesk);font-weight:500;font-size:clamp(2rem,4.6vw,3.4rem);letter-spacing:-.01em;line-height:1.08}
+.lead{color:var(--grey);max-width:48ch;margin-top:20px}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr;align-items:end;
+  max-width:var(--maxw);margin:0 auto;padding:0 40px 70px;gap:40px}
+.hero__type{padding-bottom:6px}
+.hero__kicker{font-family:var(--grotesk);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--grey);margin-bottom:26px}
+.hero__title{font-family:var(--grotesk);font-weight:500;font-size:clamp(3rem,8vw,6.6rem);line-height:.98;letter-spacing:-.02em}
+.hero__sub{margin-top:26px;color:var(--ink);opacity:.7;max-width:32ch}
+.hero__media{position:relative;aspect-ratio:3/4;overflow:hidden;align-self:stretch;margin-top:96px}
+.hero__media img{width:100%;height:100%;object-fit:cover;filter:grayscale(.12) contrast(1.02)}
+.hero__cap{font-family:var(--grotesk);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey);margin-top:12px;display:flex;justify-content:space-between}
+
+/* ---------- 리빌(데스크탑 전용) ---------- */
+@media (min-width:861px){
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+}
+
+/* ---------- SELECTED WORK (가로 스크롤) ---------- */
+.work__head{max-width:var(--maxw);margin:0 auto;padding:90px 40px 0;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.work__hint{font-family:var(--grotesk);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.work__track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px;cursor:grab;-ms-overflow-style:none;scrollbar-width:none}
+.work__track::-webkit-scrollbar{display:none}
+.work__track.drag{cursor:grabbing}
+.work__item{flex:0 0 auto;width:min(64vw,420px);scroll-snap-align:start}
+.work__item img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.1);pointer-events:none}
+.work__item figcaption{font-family:var(--grotesk);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-top:12px;display:flex;justify-content:space-between}
+
+/* ---------- PORTFOLIO (필터 + 그리드) ---------- */
+.filter{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.filter button{font-family:var(--grotesk);font-size:.78rem;letter-spacing:.06em;padding:9px 18px;border:1px solid var(--line);
+  background:none;color:var(--grey);cursor:pointer;transition:.2s}
+.filter button.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.grid{column-count:3;column-gap:16px;margin-top:34px}
+.grid__item{break-inside:avoid;margin-bottom:16px;overflow:hidden;cursor:pointer;background:var(--soft)}
+.grid__item img{width:100%;display:block;transition:transform .7s,filter .4s;filter:grayscale(.08)}
+.grid__item:hover img{transform:scale(1.04);filter:grayscale(0)}
+
+/* ---------- ABOUT ---------- */
+.about__grid{display:grid;grid-template-columns:6fr 5fr;gap:64px;align-items:center;margin-top:50px}
+.about__body .h2{margin-bottom:22px}
+.about__body p{opacity:.78;margin-bottom:16px;max-width:48ch}
+.about__img{aspect-ratio:4/5;object-fit:cover;width:100%;filter:grayscale(.1)}
+.about__sign{font-family:var(--grotesk);font-size:.9rem;letter-spacing:.06em;margin-top:12px}
+
+/* ---------- PRICING ---------- */
+.pricing{background:var(--soft)}
+.price__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.price__card{border:1px solid var(--line);background:var(--paper);padding:30px 26px;display:flex;flex-direction:column}
+.price__card h3{font-family:var(--grotesk);font-size:1.15rem;letter-spacing:.02em;margin-bottom:4px}
+.price__card .en{font-family:var(--grotesk);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:18px}
+.price__card .num{font-family:var(--grotesk);font-weight:500;font-size:1.65rem;margin-bottom:18px}
+.price__card .num small{font-size:.9rem;color:var(--grey)}
+.price__card ul{list-style:none;display:grid;gap:9px;margin-bottom:22px}
+.price__card li{font-size:.87rem;color:var(--grey);padding-left:14px;position:relative}
+.price__card li::before{content:"—";position:absolute;left:0;color:var(--ink)}
+.price__card .btn{margin-top:auto;justify-content:center;font-size:.72rem;padding:12px}
+
+/* ---------- INFO (진행·안내) ---------- */
+.info__grid{display:grid;grid-template-columns:1fr 1fr;gap:50px 70px;margin-top:50px}
+.steps{display:grid;gap:0}
+.steps li{list-style:none;display:grid;grid-template-columns:54px 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.steps .n{font-family:var(--grotesk);color:var(--grey);font-size:.9rem}
+.steps h4{font-size:1rem;margin-bottom:5px}
+.steps p{color:var(--grey);font-size:.92rem}
+.notes h3{font-family:var(--grotesk);font-size:1.2rem;margin-bottom:16px}
+.notes ul{list-style:none;display:grid;gap:11px}
+.notes li{color:var(--grey);font-size:.94rem;padding-left:16px;position:relative}
+.notes li::before{content:"·";position:absolute;left:4px;color:var(--ink);font-weight:700}
+
+/* ---------- BOOKING ---------- */
+.book__grid{display:grid;grid-template-columns:5fr 6fr;gap:64px;margin-top:50px;align-items:start}
+.form{display:grid;gap:16px}
+.field{display:grid;gap:7px}
+.field label{font-family:var(--grotesk);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.field input,.field select,.field textarea{font-family:var(--sans);font-size:.95rem;padding:13px 15px;
+  border:1px solid var(--line);background:var(--soft);color:var(--ink);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink)}
+.field--row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ---------- LOCATION ---------- */
+.location__grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:50px}
+.location dl{display:grid;grid-template-columns:88px 1fr;gap:15px 18px;font-size:.95rem}
+.location dt{font-family:var(--grotesk);color:var(--grey);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding-top:3px}
+.maplinks{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.location__map{aspect-ratio:4/3;width:100%;border:1px solid var(--line);overflow:hidden;background:var(--soft)}
+.location__map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(1) contrast(1.05)}
+
+.foot{border-top:1px solid var(--line);padding:40px;display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;color:var(--grey);font-size:.8rem;max-width:var(--maxw);margin:0 auto}
+.foot .gk{font-size:1.05rem;letter-spacing:.14em;color:var(--ink)}
+
+/* ---------- 라이트박스 ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(15,15,14,.95);z-index:90;display:none;align-items:center;justify-content:center;padding:30px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain}
+.lightbox__close{position:absolute;top:20px;right:30px;color:#fff;font-family:var(--grotesk);font-size:.8rem;letter-spacing:.12em;cursor:pointer;background:none;border:none}
+
+/* ---------- 모바일 하단 퀵바 ---------- */
+.mbar{display:none}
+
+/* ================= 반응형 ≤860px ================= */
+@media (max-width:860px){
+  .topbar{padding:16px 20px}
+  .section{padding:80px 20px}
+  .hero{grid-template-columns:1fr;min-height:100svh;padding:92px 20px 40px;align-content:center;gap:24px}
+  .hero__media{margin-top:0;aspect-ratio:4/5}
+  .work__head{padding:60px 20px 0}
+  .work__track{padding:30px 20px 40px}
+  .work__item{width:74vw}
+  .grid{column-count:2;column-gap:10px}
+  .grid__item{margin-bottom:10px}
+  .about__grid,.book__grid,.location__grid,.info__grid{grid-template-columns:1fr;gap:32px}
+  .price__grid{grid-template-columns:1fr 1fr;gap:12px}
+  .field--row{grid-template-columns:1fr}
+  .navoverlay__foot{flex-direction:column;gap:6px;align-items:flex-start}
+  .foot{padding:30px 20px}
+  body{padding-bottom:62px}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;border-top:1px solid var(--line)}
+  .mbar a{flex:1;text-align:center;padding:15px 4px;font-size:.84rem;font-weight:600;font-family:var(--sans)}
+  .mbar a.tel{background:var(--ink);color:var(--paper)}
+  .mbar a.kko{background:#FEE500;color:#1A1A1A}
+  .mbar a.book{background:var(--paper);color:var(--ink);border-left:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 고정 상단바 ===== -->
+<header class="topbar">
+  <a class="topbar__logo" href="#hero">STUDIO NOON</a>
+  <button class="topbar__menu" id="menuBtn"><span>MENU</span><span class="bars"><i></i><i></i></span></button>
+</header>
+
+<!-- ===== 풀스크린 오버레이 내비 ===== -->
+<nav class="navoverlay" id="navoverlay">
+  <button class="navoverlay__close" id="navClose">CLOSE ✕</button>
+  <ol>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#info">Guide</a></li>
+    <li><a href="#book">Booking</a></li>
+    <li><a href="#location">Location</a></li>
+  </ol>
+  <div class="navoverlay__foot">
+    <span>STUDIO NOON · 서울 성수</span>
+    <span>화–일 10:00–20:00 · Instagram</span>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero__type">
+    <p class="hero__kicker">Seongsu, Seoul · Portrait Studio</p>
+    <h1 class="hero__title">정오의<br>빛으로<br>담다</h1>
+    <p class="hero__sub">프로필 · 인물 · 가족 · 바디 프로필. 자연광이 가장 좋은 시간의 당신.</p>
+  </div>
+  <figure class="hero__media">
+    <img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?auto=format&fit=crop&w=1100&q=80" alt="대표 포트레이트" />
+    <figcaption class="hero__cap"><span>Selected — 01</span><span>STUDIO NOON</span></figcaption>
+  </figure>
+</section>
+
+<!-- ===== SELECTED WORK (가로 스크롤) ===== -->
+<section class="work" id="work">
+  <div class="work__head reveal">
+    <h2 class="h2">Selected Work</h2>
+    <span class="work__hint">← 옆으로 밀어 보세요 →</span>
+  </div>
+  <div class="work__track" id="workTrack">
+    <figure class="work__item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=820&q=80" alt="프로필 작업" loading="lazy"><figcaption><span>Profile</span><span>2026</span></figcaption></figure>
+    <figure class="work__item"><img src="https://images.unsplash.com/photo-1606122017369-d782bbb78f32?auto=format&fit=crop&w=820&q=80" alt="인물 작업" loading="lazy"><figcaption><span>Portrait</span><span>2026</span></figcaption></figure>
+    <figure class="work__item"><img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=820&q=80" alt="인물 작업" loading="lazy"><figcaption><span>Portrait</span><span>2026</span></figcaption></figure>
+    <figure class="work__item"><img src="https://images.unsplash.com/photo-1544124094-8aea0374da93?auto=format&fit=crop&w=820&q=80" alt="바디 프로필" loading="lazy"><figcaption><span>Body</span><span>2025</span></figcaption></figure>
+    <figure class="work__item"><img src="https://images.unsplash.com/photo-1669494920898-14cbf6802f1c?auto=format&fit=crop&w=820&q=80" alt="가족 사진" loading="lazy"><figcaption><span>Family</span><span>2025</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO (필터 그리드) ===== -->
+<section class="section portfolio reveal" id="portfolio">
+  <p class="eyebrow">Portfolio</p>
+  <h2 class="h2">기록은 곧, 당신</h2>
+  <div class="filter" id="filter">
+    <button class="active" data-f="all">전체</button>
+    <button data-f="프로필">프로필</button>
+    <button data-f="인물">인물</button>
+    <button data-f="가족">가족</button>
+    <button data-f="바디">바디 프로필</button>
+  </div>
+  <div class="grid" id="grid">
+    <figure class="grid__item" data-cat="프로필" data-full="https://images.unsplash.com/photo-1606143412458-acc5f86de897?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1606143412458-acc5f86de897?auto=format&w=680&q=80" alt="프로필 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="인물" data-full="https://images.unsplash.com/photo-1603775020644-eb8decd79994?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1603775020644-eb8decd79994?auto=format&w=680&q=80" alt="인물 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="바디" data-full="https://images.unsplash.com/photo-1508184964240-ee96bb9677a7?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1508184964240-ee96bb9677a7?auto=format&w=680&q=80" alt="바디 프로필" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="가족" data-full="https://images.unsplash.com/photo-1563170446-9c3c0622d8a9?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1563170446-9c3c0622d8a9?auto=format&w=680&q=80" alt="가족 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="프로필" data-full="https://images.unsplash.com/photo-1536766768598-e09213fdcf22?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1536766768598-e09213fdcf22?auto=format&w=680&q=80" alt="프로필 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="인물" data-full="https://images.unsplash.com/photo-1674932668403-33398b81c92f?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1674932668403-33398b81c92f?auto=format&w=680&q=80" alt="인물 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="바디" data-full="https://images.unsplash.com/photo-1617744966315-b3c950c430c7?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1617744966315-b3c950c430c7?auto=format&w=680&q=80" alt="바디 프로필" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="가족" data-full="https://images.unsplash.com/photo-1642697643268-a1c7054ae1bb?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1642697643268-a1c7054ae1bb?auto=format&w=680&q=80" alt="가족 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="프로필" data-full="https://images.unsplash.com/photo-1624711517157-25991163e537?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1624711517157-25991163e537?auto=format&w=680&q=80" alt="프로필 사진" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section about reveal" id="about">
+  <p class="eyebrow">About</p>
+  <div class="about__grid">
+    <div class="about__body">
+      <h2 class="h2">잘 나온 사진이 아니라,<br>당신다운 사진</h2>
+      <p>STUDIO NOON은 가장 좋은 빛이 드는 정오의 시간, 자연광으로 사람을 담는 작은 스튜디오입니다. 과한 보정 대신 표정과 분위기를 살려, 1년 뒤에도 ‘나 같다’고 느껴지는 사진을 지향합니다.</p>
+      <p>처음 카메라 앞이 어색한 분도 편안하게 풀어드려요. 촬영 전 짧은 대화로 원하는 무드를 맞추고, 자연스러운 순간을 기다립니다.</p>
+      <p class="about__sign">— STUDIO NOON · 포토그래퍼 서윤</p>
+    </div>
+    <img class="about__img" src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=900&q=80" alt="포토그래퍼" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="section pricing reveal" id="pricing">
+  <p class="eyebrow">Pricing</p>
+  <h2 class="h2">촬영 패키지</h2>
+  <div class="price__grid">
+    <article class="price__card"><h3>프로필</h3><p class="en">Profile</p><p class="num">120,000<small>원~</small></p><ul><li>촬영 40분</li><li>보정 3컷</li><li>원본 전체 제공</li><li>의상 1~2벌</li></ul><a href="#book" class="btn btn--solid">예약</a></article>
+    <article class="price__card"><h3>인물</h3><p class="en">Portrait</p><p class="num">180,000<small>원~</small></p><ul><li>촬영 60분</li><li>보정 5컷</li><li>원본 전체 제공</li><li>배경 2종</li></ul><a href="#book" class="btn btn--solid">예약</a></article>
+    <article class="price__card"><h3>가족</h3><p class="en">Family</p><p class="num">250,000<small>원~</small></p><ul><li>촬영 70분</li><li>보정 7컷</li><li>최대 4인</li><li>원본 전체 제공</li></ul><a href="#book" class="btn btn--solid">예약</a></article>
+    <article class="price__card"><h3>바디 프로필</h3><p class="en">Body</p><p class="num">300,000<small>원~</small></p><ul><li>촬영 90분</li><li>보정 8컷</li><li>조명 세팅 포함</li><li>탈의 공간 구비</li></ul><a href="#book" class="btn btn--solid">예약</a></article>
+  </div>
+</section>
+
+<!-- ===== GUIDE (진행·안내) ===== -->
+<section class="section info reveal" id="info">
+  <p class="eyebrow">Guide</p>
+  <h2 class="h2">촬영은 이렇게</h2>
+  <div class="info__grid">
+    <ol class="steps">
+      <li><span class="n">01</span><div><h4>예약 · 상담</h4><p>원하는 촬영 종류와 무드를 문의로 남기면 가능 일정을 안내해요.</p></div></li>
+      <li><span class="n">02</span><div><h4>촬영</h4><p>짧은 대화로 긴장을 풀고, 자연광 아래 자연스러운 순간을 담습니다.</p></div></li>
+      <li><span class="n">03</span><div><h4>셀렉 · 리터칭</h4><p>당일 원본에서 베스트 컷을 함께 고르고, 패키지 컷 수만큼 보정합니다.</p></div></li>
+      <li><span class="n">04</span><div><h4>전달</h4><p>원본 전체와 보정본을 2~3주 내 온라인으로 전달드립니다.</p></div></li>
+    </ol>
+    <div class="notes">
+      <h3>안내사항</h3>
+      <ul>
+        <li>기본 보정 컷 수는 패키지별 상이 · 추가 보정 1컷 10,000원</li>
+        <li>원본(JPG) 전체 제공 · 보정본 2~3주 내 전달</li>
+        <li>의상 1~2벌 권장 · 헤어/메이크업 미포함(연계샵 안내)</li>
+        <li>예약은 문의 후 예약금 30% 입금 시 확정</li>
+        <li>촬영 3일 전까지 일정 변경 1회 무료 · 이후 예약금 환불 불가</li>
+        <li>주차 인근 공영주차장 · 반려동물 동반은 사전 문의</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section class="section book reveal" id="book">
+  <div class="book__grid">
+    <div>
+      <p class="eyebrow">Booking</p>
+      <h2 class="h2">예약 · 문의</h2>
+      <p class="lead">원하는 촬영 종류와 일정을 남겨주시면 가능 시간을 안내해 드려요. 카카오톡 · 네이버 예약도 가능합니다.</p>
+      <a href="https://booking.naver.com" target="_blank" rel="noopener" class="btn btn--ghost" style="margin-top:24px">네이버 예약</a>
+    </div>
+    <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field--row">
+        <div class="field"><label for="name">이름</label><input id="name" name="name" type="text" required></div>
+        <div class="field"><label for="tel">연락처</label><input id="tel" name="tel" type="tel" placeholder="010-0000-0000" required></div>
+      </div>
+      <div class="field">
+        <label for="type">촬영 종류</label>
+        <select id="type" name="type"><option>프로필</option><option>인물 포트레이트</option><option>가족</option><option>바디 프로필</option></select>
+      </div>
+      <div class="field--row">
+        <div class="field"><label for="date">희망일</label><input id="date" name="date" type="date"></div>
+        <div class="field"><label for="people">인원</label><input id="people" name="people" type="number" min="1" placeholder="1"></div>
+      </div>
+      <div class="field"><label for="msg">메시지</label><textarea id="msg" name="msg" rows="4" placeholder="원하는 무드나 문의사항을 적어주세요"></textarea></div>
+      <button type="submit" class="btn btn--solid" style="justify-content:center">문의 보내기</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section class="section location reveal" id="location">
+  <div class="location__grid">
+    <div>
+      <p class="eyebrow">Location</p>
+      <h2 class="h2">Studio</h2>
+      <dl style="margin-top:28px">
+        <dt>주소</dt><dd>서울 성동구 성수동 ○○로 00, 3층</dd>
+        <dt>전화</dt><dd>010-0000-0000</dd>
+        <dt>운영</dt><dd>화–일 10:00–20:00 · 월요일 휴무</dd>
+        <dt>주차</dt><dd>인근 공영주차장 이용</dd>
+      </dl>
+      <div class="maplinks">
+        <a href="https://map.naver.com" target="_blank" rel="noopener" class="btn btn--solid">네이버 지도</a>
+        <a href="tel:01000000000" class="btn btn--ghost">전화</a>
+      </div>
+    </div>
+    <div class="location__map"><iframe title="STUDIO NOON 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=127.0480%2C37.5400%2C127.0640%2C37.5490&amp;layer=mapnik&amp;marker=37.5445%2C127.0560"></iframe></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span class="gk">STUDIO NOON</span>
+  <span>© 2026 STUDIO NOON. 서울 성수 프로필·인물 사진.</span>
+  <span><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a> · <a href="https://booking.naver.com" target="_blank" rel="noopener">네이버 예약</a></span>
+</footer>
+
+<!-- 라이트박스 -->
+<div class="lightbox" id="lightbox"><button class="lightbox__close" aria-label="닫기">CLOSE ✕</button><img src="" alt="작업 확대 이미지"></div>
+
+<!-- 모바일 하단 퀵바 (div) -->
+<div class="mbar">
+  <a class="tel" href="tel:01000000000">전화</a>
+  <a class="kko" href="https://pf.kakao.com" target="_blank" rel="noopener">카카오톡</a>
+  <a class="book" href="#book">예약</a>
+</div>
+
+<script>
+(function(){
+  // 오버레이 내비
+  var ov=document.getElementById('navoverlay');
+  document.getElementById('menuBtn').addEventListener('click',function(){ ov.classList.add('open'); });
+  document.getElementById('navClose').addEventListener('click',function(){ ov.classList.remove('open'); });
+  ov.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ ov.classList.remove('open'); }); });
+
+  // 가로 스크롤 드래그
+  var track=document.getElementById('workTrack');
+  if(track){ var down=false,sx,sl;
+    track.addEventListener('mousedown',function(e){ down=true; track.classList.add('drag'); sx=e.pageX; sl=track.scrollLeft; });
+    window.addEventListener('mouseup',function(){ down=false; track.classList.remove('drag'); });
+    track.addEventListener('mouseleave',function(){ down=false; track.classList.remove('drag'); });
+    track.addEventListener('mousemove',function(e){ if(!down)return; e.preventDefault(); track.scrollLeft=sl-(e.pageX-sx); });
+  }
+
+  // 포트폴리오 필터
+  var fbtns=document.querySelectorAll('#filter button'), items=document.querySelectorAll('#grid .grid__item');
+  fbtns.forEach(function(b){ b.addEventListener('click',function(){
+    fbtns.forEach(function(x){ x.classList.remove('active'); }); b.classList.add('active');
+    var f=b.getAttribute('data-f');
+    items.forEach(function(it){ it.style.display=(f==='all'||it.getAttribute('data-cat')===f)?'':'none'; });
+  }); });
+
+  // 라이트박스
+  var lb=document.getElementById('lightbox'), lbImg=lb.querySelector('img');
+  document.querySelectorAll('.grid__item').forEach(function(f){ f.addEventListener('click',function(){ lbImg.src=f.getAttribute('data-full'); lb.classList.add('open'); }); });
+  function closeLb(){ lb.classList.remove('open'); lbImg.src=''; }
+  lb.addEventListener('click',function(e){ if(e.target!==lbImg||true) closeLb(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+
+  // 데스크탑 전용 리빌
+  if(window.matchMedia('(min-width:861px)').matches && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>
