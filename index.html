@@ -27,12 +27,13 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- 고정 상단바 ---------- */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
-  padding:22px 40px;mix-blend-mode:difference;color:#fff}
-.topbar__logo{font-family:var(--grotesk);font-weight:700;font-size:1.15rem;letter-spacing:.16em}
+  padding:22px 40px;color:var(--ink);transition:background .3s,padding .3s,border-color .3s;border-bottom:1px solid transparent}
+.topbar.scrolled{background:rgba(245,244,242,.93);border-bottom-color:var(--line);padding:14px 40px}
+.topbar__logo{font-family:var(--grotesk);font-weight:700;font-size:1.15rem;letter-spacing:.16em;color:var(--ink)}
 .topbar__menu{font-family:var(--grotesk);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
-  background:none;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;gap:9px}
+  background:none;border:none;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:9px}
 .topbar__menu .bars{display:inline-flex;flex-direction:column;gap:4px}
-.topbar__menu .bars i{width:22px;height:1.5px;background:#fff;display:block}
+.topbar__menu .bars i{width:22px;height:1.5px;background:var(--ink);display:block}
 
 /* ---------- 풀스크린 오버레이 내비 ---------- */
 .navoverlay{position:fixed;inset:0;z-index:70;background:var(--ink);color:var(--paper);
@@ -68,7 +69,7 @@ a{color:inherit;text-decoration:none}
   max-width:var(--maxw);margin:0 auto;padding:0 40px 70px;gap:40px}
 .hero__type{padding-bottom:6px}
 .hero__kicker{font-family:var(--grotesk);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--grey);margin-bottom:26px}
-.hero__title{font-family:var(--grotesk);font-weight:500;font-size:clamp(3rem,8vw,6.6rem);line-height:.98;letter-spacing:-.02em}
+.hero__title{font-family:var(--grotesk);font-weight:500;font-size:clamp(2.6rem,6.6vw,5.6rem);line-height:1.18;letter-spacing:-.005em}
 .hero__sub{margin-top:26px;color:var(--ink);opacity:.7;max-width:32ch}
 .hero__media{position:relative;aspect-ratio:3/4;overflow:hidden;align-self:stretch;margin-top:96px}
 .hero__media img{width:100%;height:100%;object-fit:cover;filter:grayscale(.12) contrast(1.02)}
@@ -149,7 +150,7 @@ a{color:inherit;text-decoration:none}
 .location dt{font-family:var(--grotesk);color:var(--grey);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding-top:3px}
 .maplinks{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
 .location__map{aspect-ratio:4/3;width:100%;border:1px solid var(--line);overflow:hidden;background:var(--soft)}
-.location__map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(1) contrast(1.05)}
+.location__map iframe{width:100%;height:100%;border:0;display:block}
 
 .foot{border-top:1px solid var(--line);padding:40px;display:flex;justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:12px;color:var(--grey);font-size:.8rem;max-width:var(--maxw);margin:0 auto}
@@ -184,7 +185,7 @@ a{color:inherit;text-decoration:none}
   .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;border-top:1px solid var(--line)}
   .mbar a{flex:1;text-align:center;padding:15px 4px;font-size:.84rem;font-weight:600;font-family:var(--sans)}
   .mbar a.tel{background:var(--ink);color:var(--paper)}
-  .mbar a.kko{background:#FEE500;color:#1A1A1A}
+  .mbar a.nav{background:#03C75A;color:#fff}
   .mbar a.book{background:var(--paper);color:var(--ink);border-left:1px solid var(--line)}
 }
 </style>
@@ -256,12 +257,12 @@ a{color:inherit;text-decoration:none}
   <div class="grid" id="grid">
     <figure class="grid__item" data-cat="프로필" data-full="https://images.unsplash.com/photo-1606143412458-acc5f86de897?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1606143412458-acc5f86de897?auto=format&w=680&q=80" alt="프로필 사진" loading="lazy"></figure>
     <figure class="grid__item" data-cat="인물" data-full="https://images.unsplash.com/photo-1603775020644-eb8decd79994?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1603775020644-eb8decd79994?auto=format&w=680&q=80" alt="인물 사진" loading="lazy"></figure>
-    <figure class="grid__item" data-cat="바디" data-full="https://images.unsplash.com/photo-1508184964240-ee96bb9677a7?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1508184964240-ee96bb9677a7?auto=format&w=680&q=80" alt="바디 프로필" loading="lazy"></figure>
-    <figure class="grid__item" data-cat="가족" data-full="https://images.unsplash.com/photo-1563170446-9c3c0622d8a9?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1563170446-9c3c0622d8a9?auto=format&w=680&q=80" alt="가족 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="바디" data-full="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&w=680&q=80" alt="바디 프로필" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="가족" data-full="https://images.unsplash.com/photo-1588979355313-6711a095465f?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1588979355313-6711a095465f?auto=format&w=680&q=80" alt="가족 사진" loading="lazy"></figure>
     <figure class="grid__item" data-cat="프로필" data-full="https://images.unsplash.com/photo-1536766768598-e09213fdcf22?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1536766768598-e09213fdcf22?auto=format&w=680&q=80" alt="프로필 사진" loading="lazy"></figure>
     <figure class="grid__item" data-cat="인물" data-full="https://images.unsplash.com/photo-1674932668403-33398b81c92f?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1674932668403-33398b81c92f?auto=format&w=680&q=80" alt="인물 사진" loading="lazy"></figure>
-    <figure class="grid__item" data-cat="바디" data-full="https://images.unsplash.com/photo-1617744966315-b3c950c430c7?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1617744966315-b3c950c430c7?auto=format&w=680&q=80" alt="바디 프로필" loading="lazy"></figure>
-    <figure class="grid__item" data-cat="가족" data-full="https://images.unsplash.com/photo-1642697643268-a1c7054ae1bb?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1642697643268-a1c7054ae1bb?auto=format&w=680&q=80" alt="가족 사진" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="바디" data-full="https://images.unsplash.com/photo-1518617840859-acd542e13a99?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1518617840859-acd542e13a99?auto=format&w=680&q=80" alt="바디 프로필" loading="lazy"></figure>
+    <figure class="grid__item" data-cat="가족" data-full="https://images.unsplash.com/photo-1609220136736-443140cffec6?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?auto=format&w=680&q=80" alt="가족 사진" loading="lazy"></figure>
     <figure class="grid__item" data-cat="프로필" data-full="https://images.unsplash.com/photo-1624711517157-25991163e537?auto=format&w=1400&q=80"><img src="https://images.unsplash.com/photo-1624711517157-25991163e537?auto=format&w=680&q=80" alt="프로필 사진" loading="lazy"></figure>
   </div>
 </section>
@@ -378,12 +379,17 @@ a{color:inherit;text-decoration:none}
 <!-- 모바일 하단 퀵바 (div) -->
 <div class="mbar">
   <a class="tel" href="tel:01000000000">전화</a>
-  <a class="kko" href="https://pf.kakao.com" target="_blank" rel="noopener">카카오톡</a>
-  <a class="book" href="#book">예약</a>
+  <a class="nav" href="https://booking.naver.com" target="_blank" rel="noopener">네이버 예약</a>
+  <a class="book" href="#book">문의</a>
 </div>
 
 <script>
 (function(){
+  // 상단바 스크롤 솔리드
+  var topbar=document.querySelector('.topbar'), tt=false;
+  function onTop(){ if(tt)return; tt=true; requestAnimationFrame(function(){ topbar.classList.toggle('scrolled', window.scrollY>30); tt=false; }); }
+  window.addEventListener('scroll',onTop,{passive:true}); onTop();
+
   // 오버레이 내비
   var ov=document.getElementById('navoverlay');
   document.getElementById('menuBtn').addEventListener('click',function(){ ov.classList.add('open'); });
